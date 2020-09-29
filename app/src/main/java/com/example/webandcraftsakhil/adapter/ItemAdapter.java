@@ -51,27 +51,29 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 LinearLayoutManager.HORIZONTAL,
                 false
         );
-        if(item.getProducts() != null ){
-            if(!item.getProducts().isEmpty()) {
-                layoutManager.setInitialPrefetchItemCount(item.getProducts().size());
-                // Create sub item view adapter
-                SubItemAdapter subItemAdapter = new SubItemAdapter(item.getProducts(), this, context);
-                itemViewHolder.rvSubItem.setLayoutManager(layoutManager);
-                itemViewHolder.rvSubItem.setAdapter(subItemAdapter);
-                itemViewHolder.rvSubItem.setRecycledViewPool(viewPool);
+        if (item.getProducts() != null || item.getProducts().isEmpty()) {
+            {
+                itemViewHolder.rvSubItem.setVisibility(View.GONE);
             }
         } else {
-        itemViewHolder.rvSubItem.setVisibility(View.GONE);}
+            layoutManager.setInitialPrefetchItemCount(item.getProducts().size());
+            // Create sub item view adapter
+            SubItemAdapter subItemAdapter = new SubItemAdapter(item.getProducts(), this, context);
+            itemViewHolder.rvSubItem.setLayoutManager(layoutManager);
+            itemViewHolder.rvSubItem.setAdapter(subItemAdapter);
+            itemViewHolder.rvSubItem.setRecycledViewPool(viewPool);
+        }
+
         itemViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(item.getExpanded() == null){
+                if (item.getExpanded() == null) {
                     item.setExpanded(true);
                     itemViewHolder.rvSubItem.setVisibility(View.GONE);
-                } else if(!item.getExpanded()){
+                } else if (!item.getExpanded()) {
                     item.setExpanded(true);
                     itemViewHolder.rvSubItem.setVisibility(View.VISIBLE);
-                } else if(item.getExpanded()){
+                } else if (item.getExpanded()) {
                     item.setExpanded(false);
                     itemViewHolder.rvSubItem.setVisibility(View.GONE);
                 }

@@ -36,7 +36,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
-    private void setProductInfo(Products products){
+    private void setProductInfo(Products products) {
         Log.d(TAG, "setProductInfo: " + products.getTitle());
         tvTitle.setText(products.getTitle());
         tvPrice.setText("₹" + String.valueOf(products.getPrice()));
