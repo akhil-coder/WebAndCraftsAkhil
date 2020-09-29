@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements OnMainProductClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Categories");
         rvCategories = findViewById(R.id.rv_categories);
         mContext = this;
         mViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
